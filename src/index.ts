@@ -6,7 +6,7 @@ import { MAEmperorinsiliconot } from './strategies/MAEmperorinsiliconot';
 import SSLCciStrategy from './strategies/SSLCciStrategy';
 import { BollingerBandsSignal } from './strategies/BollingerBandsSignal';
 
-import { scheduleJob } from './utils/schedule';
+import { JobScheduler } from './utils/schedule';
 
 export {
     calculateCCI,
@@ -15,5 +15,5 @@ export {
     MAEmperorinsiliconot,
     SSLCciStrategy,
     BollingerBandsSignal,
-    scheduleJob
+    JobScheduler
 };

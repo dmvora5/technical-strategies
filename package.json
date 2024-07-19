@@ -1,6 +1,6 @@
 {
  "name": "technical-strategies",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of trading indicators and strategies",
   "main": "dist/index.js",
   "scripts": {
