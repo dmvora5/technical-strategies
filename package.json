@@ -1,0 +1,34 @@
+{
+ "name": "technical-strategies",
+  "version": "1.0.0",
+  "description": "A collection of trading indicators and strategies",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmvora5/technical-strategies.git"
+  },
+  "keywords": [
+    "trading",
+    "indicators",
+    "strategies"
+  ],
+  "author": "Divyesh vora",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmvora5/technical-strategies/issues"
+  },
+  "homepage": "https://github.com/dmvora5/technical-strategies#readme",
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "@types/node-schedule": "^2.1.7",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "node-schedule": "^2.1.1",
+    "technicalindicators": "^3.1.0"
+  }
+}
