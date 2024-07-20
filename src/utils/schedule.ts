@@ -4,6 +4,7 @@ interface ScheduleJobOptions {
     initialHour?: number;
     initialMinute?: number;
     intervalMinutes?: number;
+    secondFraction?: number;
     jobFunction: () => void;
 }
 
@@ -11,6 +12,7 @@ class JobScheduler {
     private initialHour: number;
     private initialMinute: number;
     private intervalMinutes: number;
+    private secondFraction: number;
     private jobFunction: () => void;
     private nextRunTime: Date;
     private scheduledJob: Job | null = null;
@@ -19,6 +21,7 @@ class JobScheduler {
         initialHour = 9,
         initialMinute = 16,
         intervalMinutes = 5,
+        secondFraction = 30,
         jobFunction
     }: ScheduleJobOptions) {
         if (typeof jobFunction !== 'function') {
@@ -28,6 +31,7 @@ class JobScheduler {
         this.initialHour = initialHour;
         this.initialMinute = initialMinute;
         this.intervalMinutes = intervalMinutes;
+        this.secondFraction = secondFraction;
         this.jobFunction = jobFunction;
         this.nextRunTime = this.calculateNextRunTime();
 
@@ -46,7 +50,7 @@ class JobScheduler {
         const minutesSinceInitial = Math.floor((now.getTime() - initialTimeToday.getTime()) / 60000);
         const minutesToNextInterval = this.intervalMinutes - (minutesSinceInitial % this.intervalMinutes);
         const nextRun = new Date(now.getTime() + minutesToNextInterval * 60000);
-        nextRun.setSeconds(30, 0);
+        nextRun.setSeconds(this.secondFraction, 0);
 
         return nextRun;
     }
