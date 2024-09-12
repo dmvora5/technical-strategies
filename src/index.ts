@@ -8,6 +8,13 @@ import { BollingerBandsSignal } from './strategies/BollingerBandsSignal';
 import { RsiAndChandaliarExit} from "./strategies/RsiAndChandaliarExit";
 
 import { JobScheduler } from './utils/schedule';
+import { COLSE_TYPE, StructuralSD } from './strategies/StructuralSD';
+
+const StructuralSdUtils = {
+    COLSE_TYPE: {
+        ...COLSE_TYPE
+    }
+}
 
 export {
     calculateCCI,
@@ -17,5 +24,7 @@ export {
     SSLCciStrategy,
     BollingerBandsSignal,
     RsiAndChandaliarExit,
-    JobScheduler
+    JobScheduler,
+    StructuralSD,
+    StructuralSdUtils
 };
