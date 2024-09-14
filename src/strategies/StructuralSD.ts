@@ -181,7 +181,7 @@ class StructuralSD {
             });
 
             if (pivots.length > 0) {
-                pivots.forEach((currentPivot, pivotIndex) => {
+                pivots.forEach((currentPivot) => {
                     if (
                         (currentPivot.pivot === PIVOT_TYPE.UP && current.close > currentPivot.value!) ||
                         (currentPivot.pivot === PIVOT_TYPE.DOWN && current.close < currentPivot.value!)
@@ -250,10 +250,10 @@ class StructuralSD {
         });
     }
 
-    checkForSignal(propertyName: keyof Candle = 'retest'): Candle | false {
+    checkForSignal(): Candle | false {
         const start = Math.max(this.data.length - this.lookBackCandlesForSignal, 0);
         for (let i = this.data.length - 1; i >= start; i--) {
-            if (this.data[i][propertyName]) {
+            if (this.data[i].retest && this.data[i].valid === VALIDITY.VALID) {
                 return this.data[i];
             }
         }
@@ -275,7 +275,7 @@ class StructuralSD {
                 "retestDate"
             ]);
         }
-        return this.checkForSignal('retest');
+        return this.checkForSignal();
     }
 }
 
