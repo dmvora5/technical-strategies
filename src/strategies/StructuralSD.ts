@@ -253,18 +253,32 @@ class StructuralSD {
     checkForSignal(): Candle | false {
         const start = Math.max(this.data.length - this.lookBackCandlesForSignal, 0);
         for (let i = this.data.length - 1; i >= start; i--) {
-            if (this.data[i].retest && this.data[i].valid === VALIDITY.VALID) {
+            if (this.data[i].retest) {
                 return this.data[i];
             }
         }
         return false;
     }
 
-    apply(print = false): Candle | false {
+    checkNewForemedFvg(): Candle | false {
+        const start = Math.max(this.data.length - this.lookBackCandlesForSignal, 0);
+        for (let i = this.data.length - 1; i >= start; i--) {
+            if (this.data[i].valid === VALIDITY.VALID) {
+                return this.data[i];
+            }
+        }
+        return false;
+    }
+
+    apply({print = false, leval = false}): Candle | false {
         this.detectPivotPoints();
         this.detectFVGs();
         if (print) {
-            console.table(this.data.map(ele => ({...ele, date: new Date(ele.date).toLocaleString()})), [
+            console.table(this.data.map(ele => ({...ele, 
+                date: new Date(ele.date).toLocaleString(),
+                invalidDate: new Date(ele.invalidDate!).toLocaleString(),
+                retestDate: new Date(ele.retestDate!).toLocaleString()
+            })), [
                 "date",
                 "range",
                 "pivot",
@@ -274,6 +288,9 @@ class StructuralSD {
                 "retest",
                 "retestDate"
             ]);
+        }
+        if(leval) {
+            return this.checkNewForemedFvg();
         }
         return this.checkForSignal();
     }
