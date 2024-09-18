@@ -264,7 +264,7 @@ class StructuralSD {
         this.detectPivotPoints();
         this.detectFVGs();
         if (print) {
-            console.table(this.data, [
+            console.table(this.data.map(ele => ({...ele, date: new Date(ele.date).toLocaleString()})), [
                 "date",
                 "range",
                 "pivot",
